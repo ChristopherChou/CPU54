@@ -1,23 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2019/06/10 11:13:02
-// Design Name: 
-// Module Name: sccomp_dataflow
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 module sccomp_dataflow(
     input clk_in,
@@ -37,8 +18,8 @@ module sccomp_dataflow(
     wire [2:0]select;
     
     assign inst=imm;
-assign clk_out=clk_in;
-//divider div(clk_in,reset,clk_out);
+    assign clk_out=clk_in;
+    //divider div(clk_in,reset,clk_out);
 
     imem imem(((pc- 32'h00400000)/4),imm);
     //imem im(pc,inst)
@@ -56,6 +37,6 @@ assign clk_out=clk_in;
     .addr((alu_r[31:0]-32'h10010000)),
     .data_in(Rt),
     .data_out(ram_out)
-     );   
+    );   
     
 endmodule

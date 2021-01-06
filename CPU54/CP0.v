@@ -1,25 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2019/06/10 11:28:30
-// Design Name: 
-// Module Name: CP0
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 
 module CP0(
     input clk,
@@ -32,14 +11,13 @@ module CP0(
     input exception,     //SYSCALL,BREAK,TEQ
     input eret,             // Instruction is ERET(Exception Return)
     input [4:0] cause,
-   // input intr,           //外部中断输入
+    //input intr,           //外部中断输入
     output [31:0]  rdata,  //Data form CP0 register for GP register
     output [31:0] status,
-   // output reg_timer_int,  //定时器中断输出
+    //output reg_timer_int,  //定时器中断输出
     output [31:0] exc_addr  //Address for PC at the begeinning of an exception
     );
-    
-    
+       
     //cause[6:2]异常类型号
     parameter  SYSCALL = 5'b01000,
                  BREAK = 5'b01001,
@@ -47,12 +25,10 @@ module CP0(
     
     // status  =   12  /   cause   =    13 /   epc   =  14
     reg [31:0] cp0_reg [0:31]; //CP0的32个寄存器
-    
-    assign  status = cp0_reg [12];
-                 
-   always @(posedge clk or posedge rst)
-   begin
-   if(rst)
+    assign  status = cp0_reg [12];              
+    always @(posedge clk or posedge rst)
+    begin
+    if(rst)
           begin 
             cp0_reg [0] <=0 ;
             cp0_reg [1] <=0 ;
@@ -102,8 +78,6 @@ module CP0(
                     cp0_reg [12] <= status>>5;
                 end
           end
-   
-   
    end 
    
    assign exc_addr  = eret? cp0_reg [14]:32'h00400004;

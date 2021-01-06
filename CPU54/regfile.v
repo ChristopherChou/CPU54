@@ -1,41 +1,21 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2019/06/10 11:23:29
-// Design Name: 
-// Module Name: regfile
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+module regfile(
+    input clk,    
+    input rst,
+    input ena,    
+    input we, 
+    input [4:0] raddr1,  
+    input [4:0] raddr2, 
+    input [4:0] waddr,   
+    input  [31:0] wdata, 
+    output wire [31:0] rdata1,
+    output wire [31:0] rdata2
+    );
 
- module regfile(
- input clk,    
- input rst,
- input ena,    
- input we, 
- input [4:0] raddr1,  
- input [4:0] raddr2, 
- input [4:0] waddr,   
- input  [31:0] wdata, 
- output wire [31:0] rdata1,
- output wire [31:0] rdata2
-);
-
-reg [31:0]array_reg[31:0];
-assign rdata1 = ena?array_reg[raddr1]:32'bz;
-assign rdata2 = ena?array_reg[raddr2]:32'bz;
+    reg [31:0]array_reg[31:0];
+    assign rdata1 = ena?array_reg[raddr1]:32'bz;
+    assign rdata2 = ena?array_reg[raddr2]:32'bz;
     always @(negedge clk or posedge rst)
     //always @(posedge clk or posedge rst)
         begin

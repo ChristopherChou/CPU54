@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2019/06/15 10:55:29
-// Design Name: 
-// Module Name: DIVU
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module DIVU(
     input [31:0] dividend,
@@ -30,7 +10,7 @@ module DIVU(
     output [31:0] r,
     output reg busy
     );
- 
+
     reg [4:0]count;
     reg [31:0] reg_q;
     reg [31:0] reg_r;
